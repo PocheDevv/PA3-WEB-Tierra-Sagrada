@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tierra Sagrada | Restaurante Gourmet</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    body {
+      background-color: #0b0b0b;
+      color: #f5f5f5;
+      font-family: 'Poppins', sans-serif;
+      scroll-behavior: smooth;
+    }
+
+    /* NAVBAR */
+    .navbar {
+      background-color: rgba(0, 0, 0, 0.9);
+    }
+
+    .navbar-brand {
+      font-weight: 600;
+      color: #d4af37 !important;
+      letter-spacing: 1px;
+    }
+
+    .nav-link {
+      color: #f5f5f5 !important;
+    }
+
+    .nav-link:hover {
+      color: #d4af37 !important;
+    }
+
+    /* HERO */
+    .hero {
+      height: 100vh;
+      background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.8)),
+                  url('https://images.unsplash.com/photo-1541544741938-0af808871cc0?auto=format&fit=crop&w=1950&q=80');
+      background-position: center;
+      background-size: cover;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      flex-direction: column;
+      color: white;
+    }
+
+    .hero h1 {
+      font-size: 4rem;
+      font-weight: 700;
+      color: #d4af37;
+      text-shadow: 0 0 15px rgba(0,0,0,0.8);
+    }
+
+    .hero p {
+      font-size: 1.3rem;
+      margin-bottom: 30px;
+    }
+
+    .hero .btn {
+      background-color: #d4af37;
+      border: none;
+      color: #0b0b0b;
+      font-weight: 600;
+      padding: 12px 30px;
+      border-radius: 30px;
+      transition: all 0.3s ease;
+    }
+
+    .hero .btn:hover {
+      background-color: #f5d372;
+      transform: scale(1.05);
+    }
+
+    /* SECCIÓN NOSOTROS */
+    #nosotros {
+      padding: 100px 0;
+    }
+
+    #nosotros img {
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.5);
+    }
+
+    .nosotros-texto h2 {
+      color: #d4af37;
+      margin-bottom: 20px;
+    }
+
+    /* MENÚ */
+    #menu {
+      background-color: #111;
+      padding: 100px 0;
+    }
+
+    .menu-item {
+      background-color: #1a1a1a;
+      border: 1px solid #333;
+      border-radius: 10px;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .menu-item:hover {
+      transform: scale(1.05);
+      border-color: #d4af37;
+    }
+
+    .menu-item img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .menu-item h5 {
+      color: #d4af37;
+      margin-top: 15px;
+    }
+
+    /* LÍNEA DE TIEMPO */
+    #timeline {
+      padding: 100px 0;
+      text-align: center;
+    }
+
+    #timeline h2 {
+      color: #d4af37;
+      margin-bottom: 50px;
+    }
+
+    #timeline-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 0;
+      position: relative;
+      margin-bottom: 30px;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    #timeline-nav::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 5%;
+      right: 5%;
+      height: 2px;
+      background-color: #a8c0ff;
+      transform: translateY(-50%);
+      z-index: 1;
+    }
+
+    .evento {
+      text-align: center;
+      cursor: pointer;
+      z-index: 2;
+    }
+
+    .evento-punto {
+      width: 20px;
+      height: 20px;
+      background-color: #a8c0ff;
+      border-radius: 50%;
+      margin: 0 auto 10px;
+      border: 3px solid #3f2b96;
+      transition: all 0.3s;
+    }
+
+    .evento.active .evento-punto {
+      background-color: #d4af37;
+      transform: scale(1.3);
+      border-color: #d4af37;
+    }
+
+    .detalle-evento {
+      display: none;
+      max-width: 700px;
+      margin: 0 auto;
+      background-color: #1a1a1a;
+      padding: 25px;
+      border-radius: 10px;
+      border: 1px solid #333;
+      text-align: left;
+    }
+
+    .detalle-evento h4 {
+      color: #d4af37;
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">Tierra Sagrada</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
+            <li class="nav-item"><a class="nav-link" href="carta.html">Carta</a></li>
+            <li class="nav-item"><a class="nav-link" href="reserva.html">Reserva</a></li>
+            <li class="nav-item"><a class="nav-link" href="nosotros.html">Nosotros</a></li>
+            <li class="nav-item"><a class="nav-link" href="servicios.html">Servicios</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero" class="hero">
+    <h1>Tierra Sagrada</h1>
+    <p>Donde la tradición se convierte en arte.</p>
+    <a href="#menu" class="btn">Ver Menú del Dia</a>
+  </section>
+
+  <!-- NOSOTROS -->
+  <section id="nosotros" class="container">
+    <div class="row align-items-center">
+      <div class="col-md-6">
+        <img src="IMG/fondo.jpg" class="img-fluid" alt="Restaurante">
+      </div>
+      <div class="col-md-6 nosotros-texto">
+        <h2>Sobre Nosotros</h2>
+        <p>
+          En Tierra Sagrada fusionamos los sabores ancestrales del Perú con técnicas modernas de alta cocina.  
+          Cada plato es una experiencia sensorial, elaborada con ingredientes locales seleccionados cuidadosamente.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- MENÚ -->
+  <section id="menu">
+    <div class="container text-center">
+      <h2 class="mb-5">Nuestro Menú del Dia</h2>
+      <div class="row g-4">
+        <div class="col-md-4">
+          <div class="menu-item p-3">
+            <img src="Menu/seco-res.jpg" alt="Menu 1">
+            <h5>Seco de Res con Frijoles</h5>
+            <p>Tiernos cortes de res estofados en cerveza negra y culantro, servidos con una porción de frijoles aderezados al estilo tradicional.</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="menu-item p-3">
+            <img src="Menu/tallarines-verdes.jpg" alt="Menu 2">
+            <h5>Tallarines Verdes con Bistec</h5>
+            <p>Cremosos tallarines bañados en salsa pesto peruana de albahaca y espinaca, coronados con un jugoso bistec a la plancha.</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="menu-item p-3">
+            <img src="Menu/ArrozconPollo.png" alt="Menu 3">
+            <h5>Arroz con Pollo</h5>
+            <p>Clásico arroz verde cocido con culantro fresco y especias, acompañado de una pierna de pollo y la infaltable Salsa Criolla.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LÍNEA DE TIEMPO -->
+  <section id="timeline">
+    <div class="container">
+      <h2>Nuestra Historia</h2>
+
+      <div id="timeline-nav">
+        <div class="evento active" data-event="e1">
+          <div class="evento-punto"></div>
+          <small>2018</small>
+        </div>
+        <div class="evento" data-event="e2">
+          <div class="evento-punto"></div>
+          <small>2021</small>
+        </div>
+        <div class="evento" data-event="e3">
+          <div class="evento-punto"></div>
+          <small>2024</small>
+        </div>
+      </div>
+
+      <div id="timeline-content">
+        <div id="e1" class="detalle-evento" style="display: block;">
+          <h4>✨ Fundación</h4>
+          <p>Tierra Sagrada abre sus puertas en el corazón de Miraflores, ofreciendo una propuesta que une lo ancestral y lo moderno.</p>
+        </div>
+
+        <div id="e2" class="detalle-evento">
+          <h4>🔥 Reconocimiento Nacional</h4>
+          <p>El restaurante es galardonado como uno de los mejores en gastronomía peruana contemporánea.</p>
+        </div>
+
+        <div id="e3" class="detalle-evento">
+          <h4>🌎 Expansión Internacional</h4>
+          <p>Tierra Sagrada abre su primera sucursal en Chile, llevando la esencia del Perú más allá de las fronteras.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="text-center py-4" style="background-color:#000; border-top:1px solid #333;">
+    <p>© 2025 Tierra Sagrada - Todos los derechos reservados</p>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- jQuery para la línea de tiempo -->
+  <script>
+    $(document).ready(function () {
+      // Interactividad línea de tiempo
+      $('.evento').click(function () {
+        var eventId = $(this).data('event');
+        $('.evento').removeClass('active');
+        $(this).addClass('active');
+        $('.detalle-evento').hide();
+        $('#' + eventId).fadeIn(500);
+      });
+    });
+  </script>
+</body>
+</html>
